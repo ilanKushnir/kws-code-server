@@ -5,8 +5,9 @@ A docker image of VS-Code with a pre-configured settings and pre-installed exten
 
 
 ### Build image for RPI server
+update `[VERSION]`
 ```
-docker buildx build --platform linux/arm64 -t ilankushnir/kws-code-server:[VERSION] --push .
+docker buildx build --platform linux/arm64 -t ilankushnir/kws-code-server:latest -t ilankushnir/kws-code-server:[VERSION] --push .
 ```
 
 ### How to deploy?
