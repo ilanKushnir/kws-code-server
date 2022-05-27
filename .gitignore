@@ -1,0 +1,6 @@
+# Editors
+.vscode/
+.idea/
+# Trash
+.DS_Store
+Thumbs.db
