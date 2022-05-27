@@ -8,6 +8,26 @@ RUN mkdir -p /home/coder/.local
 RUN sudo chown -R coder:coder /home/coder/.local
 
 
+# Install apt packages:
+#######################
+RUN sudo apt update && sudo apt upgrade -y
+# Install Curl
+RUN sudo apt install software-properties-common apt-transport-https curl -y
+RUN sudo add-apt-repository ppa:savoury1/curl34 -y
+RUN sudo apt install curl -y
+# Install Git
+RUN sudo apt install git
+# Install NVM, Node, NPM
+RUN sudo git clone http://github.com/creationix/nvm.git /root/.nvm
+RUN sudo chmod -R 777 /root/.nvm/
+RUN sudo bash /root/.nvm/install.sh
+RUN sudo bash -i -c 'nvm install 14'
+RUN sudo bash -i -c 'nvm install 16'
+RUN sudo bash -i -c 'nvm use 16'
+# Install ZSH add-ons
+RUN sudo curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+
 # Install a VS Code extension:
 ##############################
 # Note: code-server use a different marketplace than VS Code. See https://github.com/cdr/code-server/blob/main/docs/FAQ.md#differences-compared-to-vs-code
@@ -61,29 +81,10 @@ RUN code-server --install-extension ms-azuretools.vscode-docker
 RUN code-server --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 #  - THEMES -----------------------------------
 RUN code-server --install-extension teabyii.ayu
-RUN code-server --install-extension miguelsolorio.fluent-icons
 RUN code-server --install-extension GitHub.github-vscode-theme
 RUN code-server --install-extension zhuangtongfa.Material-theme
 RUN code-server --install-extension dracula-theme.theme-dracula
 RUN code-server --install-extension monokai.theme-monokai-pro-vscode
-
-
-# Install apt packages:
-#######################
-RUN sudo apt update && sudo apt upgrade -y
-# Install Curl
-RUN sudo apt install software-properties-common apt-transport-https curl -y
-RUN sudo add-apt-repository ppa:savoury1/curl34 -y
-RUN sudo apt install curl -y
-# Install Git
-RUN sudo apt install git
-# Install NVM, Node, NPM
-RUN sudo git clone http://github.com/creationix/nvm.git /root/.nvm
-RUN sudo chmod -R 777 /root/.nvm/
-RUN sudo bash /root/.nvm/install.sh
-RUN sudo bash -i -c 'nvm install 14'
-RUN sudo bash -i -c 'nvm install 16'
-RUN sudo bash -i -c 'nvm use 16'
 
 
 # Copy files:
