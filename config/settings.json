@@ -10,5 +10,6 @@
     "editor.guides.bracketPairs": true,
     "editor.guides.bracketPairsHorizontal": true,
     "editor.wordWrap": "on",
-    "workbench.productIconTheme": "fluent-icons"
+    "workbench.productIconTheme": "fluent-icons",
+    "terminal.integrated.defaultProfile.linux": "zsh"
 }
