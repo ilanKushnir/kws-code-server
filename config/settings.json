@@ -9,5 +9,6 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
     "editor.guides.bracketPairsHorizontal": true,
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "workbench.productIconTheme": "fluent-icons"
 }

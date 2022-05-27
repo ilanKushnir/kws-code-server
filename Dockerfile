@@ -61,6 +61,7 @@ RUN code-server --install-extension ms-azuretools.vscode-docker
 RUN code-server --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 #  - THEMES -----------------------------------
 RUN code-server --install-extension teabyii.ayu
+RUN code-server --install-extension miguelsolorio.fluent-icons
 RUN code-server --install-extension GitHub.github-vscode-theme
 RUN code-server --install-extension zhuangtongfa.Material-theme
 RUN code-server --install-extension dracula-theme.theme-dracula
