@@ -2,5 +2,12 @@
     "workbench.colorTheme": "Monokai Pro",
     "workbench.iconTheme": "Monokai Pro Icons",
     "editor.cursorSmoothCaretAnimation": true,
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "editor.linkedEditing": true,
+    "files.autoSaveDelay": 1001,
+    "editor.tabSize": 2,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.guides.bracketPairsHorizontal": true,
+    "editor.wordWrap": "on"
 }
