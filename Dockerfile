@@ -7,5 +7,12 @@ ENV SHELL=/bin/bash
 RUN mkdir -p /home/coder/.local
 RUN sudo chown -R coder:coder /home/coder/.local
 
+
+# Copy files:
+#############
+# Apply VS Code settings
+COPY ./config/settings.json .local/share/code-server/User/settings.json
+
+
 # Port
 ENV PORT=8080
