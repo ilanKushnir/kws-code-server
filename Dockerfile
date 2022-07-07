@@ -1,8 +1,9 @@
 # Start from the code-server Debian base image
 FROM codercom/code-server:latest
-USER coder
+USER root
 # Use bash shell
 ENV SHELL=/bin/bash
+
 # Fix permissions for code-server
 RUN mkdir -p /home/coder/.local
 RUN sudo chown -R coder:coder /home/coder/.local
@@ -17,15 +18,29 @@ RUN sudo add-apt-repository ppa:savoury1/curl34 -y
 RUN sudo apt install curl -y
 # Install Git
 RUN sudo apt install git
-# Install NVM, Node, NPM
+# Install NVM, Node
 RUN sudo git clone http://github.com/creationix/nvm.git /root/.nvm
 RUN sudo chmod -R 777 /root/.nvm/
-RUN sudo bash /root/.nvm/install.sh
+RUN sudo bash /root/.nvm/install.sh -y
 RUN sudo bash -i -c 'nvm install 14'
 RUN sudo bash -i -c 'nvm install 16'
 RUN sudo bash -i -c 'nvm use 16'
+# Create access to Node and NPM for all users
+RUN sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/node" "/usr/local/bin/node"
+RUN sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npm" "/usr/local/bin/npm"
+RUN sudo ln -s "$NVM_DIR/versions/node/$(nvm version)/bin/npx" "/usr/local/bin/npx"
 # Install ZSH add-ons
+COPY ./config/.zshrc /root/.zshrc
 RUN sudo curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+# Install NPM
+RUN sudo npm version
+RUN sudo npm install -g ngrok
+RUN sudo npm install -g jshint
+RUN sudo npm install -g typesync
+RUN sudo npm install -g typescript
+RUN sudo npm install -g why-is-node-running
+
+
 
 
 # Install a VS Code extension:
@@ -47,6 +62,7 @@ RUN code-server --install-extension eg2.vscode-npm-script
 RUN code-server --install-extension esbenp.prettier-vscode
 RUN code-server --install-extension GraphQL.vscode-graphql
 RUN code-server --install-extension dbaeumer.vscode-eslint
+RUN code-server --install-extension alefragnani.project-manager
 RUN code-server --install-extension wayou.vscode-todo-highlight
 RUN code-server --install-extension christian-kohler.npm-intellisense
 RUN code-server --install-extension christian-kohler.path-intellisense
